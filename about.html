@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFF8EC">
+  <meta name="description" content="The story of Chai Khana, Gulberg's late-night chai and paratha spot.">
+  <title>About Chai Khana — Doodh patti till sehri</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --brown: #6B2E1F;
+      --yellow: #F4C430;
+      --cream: #FFF8EC;
+      --ink: #2A1810;
+      --muted: #76594D;
+      --line: #E8D8C2;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Inter", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
+
+    .topbar {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--cream);
+    }
+
+    .topbar-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .wordmark {
+      color: var(--brown);
+      font: 700 1.7rem/1 var(--serif);
+      text-decoration: none;
+      letter-spacing: -0.04em;
+    }
+
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .topbar-nav a {
+      color: var(--brown);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .topbar-nav a[aria-current="page"] {
+      text-decoration: underline;
+      text-decoration-color: var(--yellow);
+      text-decoration-thickness: 3px;
+      text-underline-offset: 0.45rem;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      padding: 0.65rem 1.2rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: var(--brown);
+      color: var(--cream);
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1.2;
+      text-decoration: none;
+      transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      border-color: var(--brown);
+      background: var(--cream);
+      color: var(--brown);
+    }
+
+    .button-outline {
+      border-color: var(--brown);
+      background: transparent;
+      color: var(--brown);
+    }
+
+    .button-outline:hover,
+    .button-outline:focus-visible {
+      background: var(--brown);
+      color: var(--cream);
+    }
+
+    .hero {
+      padding-block: clamp(4.5rem, 11vw, 7rem);
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(ellipse at 86% 30%, rgb(244 196 48 / 24%), transparent 32%),
+        var(--cream);
+    }
+
+    .eyebrow {
+      margin: 0 0 0.8rem;
+      color: var(--brown);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2 {
+      margin-top: 0;
+      color: var(--brown);
+      font-family: var(--serif);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    h1 {
+      max-width: 13ch;
+      margin-bottom: 1rem;
+      font-size: clamp(3.2rem, 8vw, 6rem);
+      letter-spacing: -0.055em;
+    }
+
+    .hero-date {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .stories {
+      padding-block: clamp(1rem, 3vw, 2rem) clamp(3.75rem, 8vw, 6rem);
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: minmax(200px, 0.7fr) minmax(0, 1.3fr);
+      gap: 2rem;
+      padding-block: clamp(2.5rem, 6vw, 4.5rem);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .story h2 {
+      margin-bottom: 0;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      letter-spacing: -0.04em;
+    }
+
+    .story-copy {
+      max-width: 65ch;
+      color: var(--muted);
+    }
+
+    .story-copy p {
+      margin: 0;
+    }
+
+    .story-copy p + p {
+      margin-top: 1rem;
+    }
+
+    .closing {
+      padding-block: 0 clamp(4rem, 9vw, 7rem);
+      text-align: center;
+    }
+
+    .closing p {
+      max-width: 65ch;
+      margin: 0 auto 1.25rem;
+      color: var(--muted);
+    }
+
+    .footer {
+      padding-block: 1.5rem;
+      background: var(--brown);
+      color: var(--cream);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem 1.5rem;
+      font-size: 0.85rem;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+
+    .footer a {
+      color: var(--yellow);
+    }
+
+    @media (max-width: 760px) {
+      .story {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .wrap {
+        width: min(100% - 1.5rem, 1120px);
+      }
+
+      .topbar-inner {
+        display: grid;
+        min-height: 68px;
+        grid-template-areas:
+          "brand cta"
+          "nav nav";
+        grid-template-columns: 1fr auto;
+        row-gap: 0.65rem;
+        padding-block: 0.75rem;
+      }
+
+      .wordmark {
+        grid-area: brand;
+        font-size: 1.45rem;
+      }
+
+      .topbar-nav {
+        grid-area: nav;
+        justify-content: center;
+      }
+
+      .topbar-inner > .button {
+        grid-area: cta;
+      }
+
+      .button {
+        min-height: 42px;
+        padding-inline: 0.9rem;
+        font-size: 0.8rem;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="wordmark" href="index.html#home" aria-label="Chai Khana home">Chai Khana</a>
+      <nav class="topbar-nav" aria-label="Main navigation">
+        <a href="index.html#menu">Menu</a>
+        <a href="about.html" aria-current="page">About</a>
+      </nav>
+      <a class="button button-outline" href="https://wa.me/923001234567">Order on WhatsApp</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Our story · Gulberg, Lahore</p>
+        <h1>Where the night shift eats</h1>
+        <p class="hero-date">24 Nov 2026</p>
+      </div>
+    </section>
+
+    <div class="wrap stories">
+      <section class="story" aria-labelledby="started-title">
+        <h2 id="started-title">How Chai Khana started</h2>
+        <div class="story-copy">
+          <p>One late night on MM Alam Road in 2019, our founder was looking for a proper cup of chai after a long evening. The tea was there, but a warm table and fresh paratha were harder to find.</p>
+          <p>So Chai Khana began with a simple idea: keep the kettle on, cook with care, and make room for anyone whose day runs past midnight.</p>
+        </div>
+      </section>
+
+      <section class="story" aria-labelledby="fresh-title">
+        <h2 id="fresh-title">What we make fresh every night</h2>
+        <div class="story-copy">
+          <p>We knead our dough fresh for the night’s parathas. Our chai masala is blended in-house, then added to each pot as it brews.</p>
+          <p>And the nihari stock gets time on a slow simmer, so it’s ready when the late-night hunger arrives. Fresh, steady, and made here.</p>
+        </div>
+      </section>
+
+      <section class="story" aria-labelledby="crew-title">
+        <h2 id="crew-title">The night crew</h2>
+        <div class="story-copy">
+          <p>Four of us keep Chai Khana going from 6pm to 6am: one on chai, one on the paratha tawa, one tending the nihari, and one looking after aap.</p>
+          <p>We work as a team through the quiet hours and the busy ones. There’s always someone ready to pour another cup.</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="closing">
+      <div class="wrap">
+        <p>Come hungry, stay for chai. We’ll save you a seat.</p>
+        <a class="button" href="index.html#menu">See the menu</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p>Chai Khana · Gulberg, Lahore</p>
+      <p>Open 6pm to 6am</p>
+      <a href="https://www.instagram.com/">Instagram</a>
+    </div>
+  </footer>
+</body>
+</html>

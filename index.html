@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFF8EC">
+  <meta name="description" content="Chai Khana in Gulberg, Lahore. Doodh patti till sehri, every night from 6pm to 6am.">
+  <title>Chai Khana — Doodh patti till sehri</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --brown: #6B2E1F;
+      --yellow: #F4C430;
+      --cream: #FFF8EC;
+      --ink: #2A1810;
+      --muted: #76594D;
+      --line: #E8D8C2;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Inter", sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 6rem;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
+
+    .topbar {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--cream);
+    }
+
+    .topbar-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .topbar-nav a {
+      color: var(--brown);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .topbar-nav a[aria-current="page"] {
+      text-decoration: underline;
+      text-decoration-color: var(--yellow);
+      text-decoration-thickness: 3px;
+      text-underline-offset: 0.45rem;
+    }
+
+    .wordmark {
+      color: var(--brown);
+      font: 700 1.7rem/1 var(--serif);
+      text-decoration: none;
+      letter-spacing: -0.04em;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      padding: 0.65rem 1.2rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: var(--brown);
+      color: var(--cream);
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1.2;
+      text-decoration: none;
+      transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      border-color: var(--brown);
+      background: var(--cream);
+      color: var(--brown);
+    }
+
+    .button-outline {
+      border-color: var(--brown);
+      background: transparent;
+      color: var(--brown);
+    }
+
+    .button-outline:hover,
+    .button-outline:focus-visible {
+      background: var(--brown);
+      color: var(--cream);
+    }
+
+    .hero {
+      overflow: hidden;
+      padding-block: clamp(4.5rem, 11vw, 8rem);
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(ellipse at 82% 45%, rgb(244 196 48 / 24%), transparent 31%),
+        var(--cream);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 0.8fr);
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.8rem;
+      color: var(--brown);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin-top: 0;
+      color: var(--brown);
+      font-family: var(--serif);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    h1 {
+      max-width: 10ch;
+      margin-bottom: 1rem;
+      font-size: clamp(3.3rem, 8vw, 6.5rem);
+      letter-spacing: -0.055em;
+    }
+
+    .hero-copy {
+      max-width: 65ch;
+      margin: 0 0 1.7rem;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+    }
+
+    .hero-art {
+      width: min(100%, 390px);
+      justify-self: center;
+      border: 2px solid var(--cream);
+      border-radius: 12px;
+      filter: drop-shadow(0 14px 12px rgb(42 24 16 / 9%));
+    }
+
+    .section {
+      padding-block: clamp(3.75rem, 8vw, 6.5rem);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .section-heading h2,
+    .about h2,
+    .contact h2 {
+      margin-bottom: 0;
+      font-size: clamp(2.1rem, 5vw, 3.5rem);
+      letter-spacing: -0.04em;
+    }
+
+    .section-note {
+      max-width: 65ch;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .menu-card {
+      display: flex;
+      min-height: 202px;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.25rem;
+      border: 2px solid var(--cream);
+      border-radius: 12px;
+      background: #FFF3DE;
+    }
+
+    .food-emoji {
+      margin-bottom: 0.65rem;
+      font-size: 1.7rem;
+      line-height: 1;
+    }
+
+    .menu-card h3 {
+      margin-bottom: 0.3rem;
+      font-size: 1.35rem;
+      letter-spacing: -0.025em;
+    }
+
+    .menu-card p {
+      max-width: 24rem;
+      margin: 0 0 1.3rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .price {
+      align-self: flex-end;
+      margin-top: auto;
+      color: var(--brown);
+      font-family: var(--mono);
+      font-size: 0.88rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .signatures {
+      background: #F8EBD6;
+    }
+
+    .menu-category + .menu-category {
+      margin-top: 2.7rem;
+    }
+
+    .category-title {
+      margin-bottom: 1rem;
+      color: var(--ink);
+      font: 600 0.8rem/1.2 var(--sans);
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 2rem;
+      align-items: start;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .about-copy {
+      max-width: 65ch;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .contact {
+      background: #F8EBD6;
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 2rem;
+    }
+
+    .contact-intro {
+      max-width: 65ch;
+      margin: 0.9rem 0 0;
+      color: var(--muted);
+    }
+
+    .contact-details {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 0;
+    }
+
+    .contact-details div {
+      padding: 1.1rem;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      background: var(--cream);
+    }
+
+    .contact-details dt {
+      margin-bottom: 0.35rem;
+      color: var(--brown);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .contact-details dd {
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-details a,
+    .footer a {
+      color: var(--brown);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
+    }
+
+    .footer {
+      padding-block: 1.5rem;
+      background: var(--brown);
+      color: var(--cream);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem 1.5rem;
+      font-size: 0.85rem;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+
+    .footer a {
+      color: var(--yellow);
+    }
+
+    @media (max-width: 760px) {
+      .hero-inner,
+      .about,
+      .contact-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-art {
+        width: min(78%, 310px);
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about {
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .wrap {
+        width: min(100% - 1.5rem, 1120px);
+      }
+
+      .topbar-inner {
+        display: grid;
+        min-height: 68px;
+        grid-template-areas:
+          "brand cta"
+          "nav nav";
+        grid-template-columns: 1fr auto;
+        row-gap: 0.65rem;
+        padding-block: 0.75rem;
+      }
+
+      .wordmark {
+        grid-area: brand;
+        font-size: 1.45rem;
+      }
+
+      .topbar-nav {
+        grid-area: nav;
+        justify-content: center;
+      }
+
+      .topbar-inner > .button {
+        grid-area: cta;
+      }
+
+      .button {
+        min-height: 42px;
+        padding-inline: 0.9rem;
+        font-size: 0.8rem;
+      }
+
+      .card-grid,
+      .contact-details {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-card {
+        min-height: 180px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="wordmark" href="#home" aria-label="Chai Khana home">Chai Khana</a>
+      <nav class="topbar-nav" aria-label="Main navigation">
+        <a href="index.html#menu" aria-current="page">Menu</a>
+        <a href="about.html">About</a>
+      </nav>
+      <a class="button button-outline" href="https://wa.me/923001234567">Order on WhatsApp</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-inner">
+        <div>
+          <p class="eyebrow">Gulberg, Lahore</p>
+          <h1>Doodh patti till sehri</h1>
+          <p class="hero-copy">Open 6pm to 6am, 7 days</p>
+          <a class="button" href="#menu">See the menu</a>
+        </div>
+        <svg class="hero-art" viewBox="0 0 400 330" role="img" aria-labelledby="chai-art-title">
+          <title id="chai-art-title">A hand-drawn cup of steaming doodh patti</title>
+          <path d="M92 124c0-10 48-18 108-18s108 8 108 18v112c0 25-48 45-108 45S92 261 92 236V124Z" fill="#6B2E1F" stroke="#6B2E1F" stroke-width="5"/>
+          <ellipse cx="200" cy="124" rx="108" ry="19" fill="#F4C430" stroke="#6B2E1F" stroke-width="5"/>
+          <ellipse cx="200" cy="124" rx="87" ry="12" fill="#FFF8EC"/>
+          <path d="M308 150h23c27 0 43 17 43 39s-16 39-43 39h-29" fill="none" stroke="#6B2E1F" stroke-width="15" stroke-linecap="round"/>
+          <path d="M149 88c-17-24 16-28 1-51m48 48c-17-24 16-28 1-51m48 53c-17-24 16-28 1-51" fill="none" stroke="#6B2E1F" stroke-width="6" stroke-linecap="round"/>
+          <path d="M126 172c37 15 107 17 148 0M133 207c34 12 95 14 134 0" fill="none" stroke="#F4C430" stroke-width="4" stroke-linecap="round"/>
+          <path d="m75 277 19 9m205-9-18 11M59 112l16-7m248 4 17 7" fill="none" stroke="#6B2E1F" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="section signatures" aria-labelledby="signature-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">The usual favourites</p>
+            <h2 id="signature-title">Made for the long night</h2>
+          </div>
+          <p class="section-note">Aik cup, a warm paratha, and you’re sorted.</p>
+        </div>
+        <div class="card-grid">
+          <article class="menu-card">
+            <span class="food-emoji" aria-hidden="true">☕</span>
+            <h3>Karak Chai</h3>
+            <p>Strong, creamy, brewed slow.</p>
+            <span class="price">Rs. 180</span>
+          </article>
+          <article class="menu-card">
+            <span class="food-emoji" aria-hidden="true">🫓</span>
+            <h3>Anda Paratha</h3>
+            <p>Egg folded into flaky layers.</p>
+            <span class="price">Rs. 320</span>
+          </article>
+          <article class="menu-card">
+            <span class="food-emoji" aria-hidden="true">🍲</span>
+            <h3>Nihari</h3>
+            <p>Slow-cooked, rich, and ready.</p>
+            <span class="price">Rs. 450</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="menu" aria-labelledby="menu-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Chai, parathay, proper food</p>
+            <h2 id="menu-title">The menu</h2>
+          </div>
+          <p class="section-note">Take your time, aap. We’re here all night.</p>
+        </div>
+
+        <section class="menu-category" aria-labelledby="chai-title">
+          <h3 class="category-title" id="chai-title">Chai</h3>
+          <div class="card-grid">
+            <article class="menu-card">
+              <span class="food-emoji" aria-hidden="true">☕</span>
+              <h3>Karak Chai</h3>
+              <p>Strong, creamy, brewed slow.</p>
+              <span class="price">Rs. 180</span>
+            </article>
+            <article class="menu-card">
+              <span class="food-emoji" aria-hidden="true">🍵</span>
+              <h3>Elaichi Chai</h3>
+              <p>Fragrant cardamom in every sip.</p>
+              <span class="price">Rs. 200</span>
+            </article>
+            <article class="menu-card">
+              <span class="food-emoji" aria-hidden="true">🥛</span>
+              <h3>Doodh Patti</h3>
+              <p>Full-milk comfort, simmered just right.</p>
+              <span class="price">Rs. 220</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="menu-category" aria-labelledby="paratha-title">
+          <h3 class="category-title" id="paratha-title">Parathas</h3>
+          <div class="card-grid">
+            <article class="menu-card">
+              <span class="food-emoji" aria-hidden="true">🫓</span>
+              <h3>Anda Paratha</h3>
+              <p>Egg folded into flaky layers.</p>
+              <span class="price">Rs. 320</span>
+            </article>
+            <article class="menu-card">
+              <span class="food-emoji" aria-hidden="true">🧀</span>
+              <h3>Cheese Paratha</h3>
+              <p>Golden layers, melty cheese inside.</p>
+              <span class="price">Rs. 350</span>
+            </article>
+            <article class="menu-card">
+              <span class="food-emoji" aria-hidden="true">🥔</span>
+              <h3>Aloo Paratha</h3>
+              <p>Spiced potato tucked in soft dough.</p>
+              <span class="price">Rs. 300</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="menu-category" aria-labelledby="mains-title">
+          <h3 class="category-title" id="mains-title">Mains</h3>
+          <div class="card-grid">
+            <article class="menu-card">
+              <span class="food-emoji" aria-hidden="true">🍲</span>
+              <h3>Nihari</h3>
+              <p>Slow-cooked, rich, and ready.</p>
+              <span class="price">Rs. 450</span>
+            </article>
+            <article class="menu-card">
+              <span class="food-emoji" aria-hidden="true">🍛</span>
+              <h3>Chana Masala</h3>
+              <p>Comforting chickpeas, warm spices.</p>
+              <span class="price">Rs. 380</span>
+            </article>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="section about">
+      <div>
+        <p class="eyebrow">A little corner of Gulberg</p>
+        <h2>Late nights, good company</h2>
+      </div>
+      <p class="about-copy">Chai Khana is a Gulberg spot for students chasing one more study session and night-shift workers winding down after a long shift. We keep the chai hot, the parathas fresh, and the lights on till sehri. Come as you are; there’s always room at the table.</p>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="wrap contact-inner">
+        <div>
+          <p class="eyebrow">Come on over</p>
+          <h2>Find your late-night table</h2>
+          <p class="contact-intro">Gulberg, Lahore. Drop by after class, after work, or whenever chai calls.</p>
+        </div>
+        <dl class="contact-details">
+          <div>
+            <dt>Address</dt>
+            <dd>Gulberg, Lahore</dd>
+          </div>
+          <div>
+            <dt>Hours</dt>
+            <dd>6pm to 6am, 7 days</dd>
+          </div>
+          <div>
+            <dt>Call us</dt>
+            <dd><a href="tel:+923001234567">0300 1234567</a></dd>
+          </div>
+          <div>
+            <dt>Instagram</dt>
+            <dd><a href="https://www.instagram.com/">Find us on Instagram</a></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p>Chai Khana · Gulberg, Lahore</p>
+      <p>Open 6pm to 6am</p>
+      <a href="https://www.instagram.com/">Instagram</a>
+    </div>
+  </footer>
+</body>
+</html>
