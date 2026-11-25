@@ -342,6 +342,92 @@
       text-underline-offset: 0.2em;
     }
 
+    .order-form-section {
+      background: var(--cream);
+    }
+
+    .order-form-heading {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .order-form-heading h2 {
+      margin-bottom: 0;
+      font-size: clamp(2.1rem, 5vw, 3.5rem);
+      letter-spacing: -0.04em;
+    }
+
+    .order-form-intro {
+      margin: 0.65rem 0 0;
+      color: var(--muted);
+    }
+
+    .order-form {
+      display: grid;
+      width: min(100%, 500px);
+      gap: 1rem;
+      margin-inline: auto;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .form-field label {
+      color: var(--brown);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      padding: 0.75rem 0.85rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #FFF3DE;
+      color: var(--ink);
+      font: 400 1rem/1.5 var(--sans);
+    }
+
+    .form-field textarea {
+      min-height: 7.5rem;
+      resize: vertical;
+    }
+
+    .form-field input:focus-visible,
+    .form-field textarea:focus-visible {
+      outline: 2px solid var(--brown);
+      outline-offset: 2px;
+    }
+
+    .form-field input[aria-invalid="true"] {
+      outline: 2px solid #B42318;
+      outline-offset: 1px;
+    }
+
+    .field-error,
+    .character-count {
+      margin: 0;
+      font-size: 0.8rem;
+    }
+
+    .field-error {
+      color: #B42318;
+    }
+
+    .character-count {
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .order-form .button {
+      justify-self: start;
+      cursor: pointer;
+      font-family: var(--sans);
+    }
+
     .footer {
       padding-block: 1.5rem;
       background: var(--brown);
@@ -633,6 +719,43 @@
         </dl>
       </div>
     </section>
+
+    <section class="section order-form-section" aria-labelledby="order-form-title">
+      <div class="wrap">
+        <div class="order-form-heading">
+          <h2 id="order-form-title">Order with us</h2>
+          <p class="order-form-intro">Message us on WhatsApp. We reply within 10 minutes.</p>
+        </div>
+        <form class="order-form" id="order-form">
+          <div class="form-field">
+            <label for="order-name">Name</label>
+            <input id="order-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="form-field">
+            <label for="order-phone">Phone</label>
+            <input
+              id="order-phone"
+              class="phone-input"
+              name="phone"
+              type="text"
+              inputmode="numeric"
+              autocomplete="tel"
+              pattern="[0-9]{11}"
+              maxlength="11"
+              aria-describedby="phone-error"
+              aria-invalid="false"
+              required>
+            <p class="field-error" id="phone-error" aria-live="polite" hidden>11 digits please</p>
+          </div>
+          <div class="form-field">
+            <label for="order-notes">Order notes <span>(optional)</span></label>
+            <textarea id="order-notes" name="notes" rows="4" maxlength="200" aria-describedby="notes-count"></textarea>
+            <p class="character-count" id="notes-count" aria-live="polite">0 / 200</p>
+          </div>
+          <button class="button" type="submit">Send on WhatsApp</button>
+        </form>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -642,5 +765,46 @@
       <a href="https://www.instagram.com/">Instagram</a>
     </div>
   </footer>
+  <script>
+    const orderForm = document.querySelector("#order-form");
+    const phoneInput = document.querySelector("#order-phone");
+    const phoneError = document.querySelector("#phone-error");
+    const notesInput = document.querySelector("#order-notes");
+    const notesCount = document.querySelector("#notes-count");
+    let phoneHasBeenEdited = false;
+
+    function updatePhoneValidity(showError = phoneHasBeenEdited) {
+      const invalid = !phoneInput.validity.valid;
+      const show = showError && invalid;
+      phoneInput.setAttribute("aria-invalid", String(show));
+      phoneError.hidden = !show;
+    }
+
+    phoneInput.addEventListener("input", () => {
+      phoneHasBeenEdited = true;
+      updatePhoneValidity();
+    });
+
+    phoneInput.addEventListener("blur", () => {
+      phoneHasBeenEdited = true;
+      updatePhoneValidity();
+    });
+
+    phoneInput.addEventListener("invalid", () => {
+      phoneHasBeenEdited = true;
+      updatePhoneValidity(true);
+    });
+
+    notesInput.addEventListener("input", () => {
+      notesCount.textContent = `${notesInput.value.length} / 200`;
+    });
+
+    orderForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const message = `Name: ${orderForm.elements.name.value.trim()} Phone: ${orderForm.elements.phone.value.trim()} Order: ${orderForm.elements.notes.value.trim()}`;
+      const whatsappUrl = `https://wa.me/923001234567?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    });
+  </script>
 </body>
 </html>
